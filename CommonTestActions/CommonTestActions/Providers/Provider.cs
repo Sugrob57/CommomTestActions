@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace CommonTestActions
 {
@@ -16,10 +18,10 @@ namespace CommonTestActions
             return new NotImplementedException().Message;
         }
 
-        public virtual string Edit(string addedUrl, string body)
-        {
-            return new NotImplementedException().Message;
-        }
+        public abstract string Edit(string addedUrl, string body);
+        //{
+        //    return new Task<HttpResponseMessage>();
+        //}
 
         public virtual string Delete(string addedUrl)
         {

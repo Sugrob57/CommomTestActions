@@ -35,8 +35,25 @@ namespace CoreTestApi.Controllers
         /// <response code="200">Returns the selected item</response>
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
-        {          
-            return String.Format("Topic {0}", id);
+        {
+            try
+            {
+                Topic selectedTopic = TopicSource.All.Where(x => x.Id == id).FirstOrDefault();
+                if (selectedTopic == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(selectedTopic);
+                }
+            }
+            catch (Exception e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e);
+            }
+
+            //return String.Format("Topic {0}", id);
         }
 
 

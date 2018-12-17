@@ -8,8 +8,8 @@ using System.Globalization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 
-//using 
 
 namespace CommonTestActions.Providers
 {
@@ -29,34 +29,51 @@ namespace CommonTestActions.Providers
 
         public override string Delete(string addedUrl)
         {
-            //var item = new Item(){//body};
-            //var client = new RestClient("http://192.168.0.1");
-            //var request = new RestRequest("api/item/{id}", Method.DELETE);
-            //request.AddParameter("id", idItem);
+            //return BaseDelete(addedUrl);
+            return RestSharpDelete(addedUrl);
+        }
 
-            //client.Execute(request)
-            return base.Delete(addedUrl);
+        private string RestSharpDelete(string addedUrl)
+        {
+            var client = new RestClient(base.ConectionString);
+            var request = new RestRequest(addedUrl, Method.DELETE);
+
+            var queryResult = client.Execute(request);
+            return queryResult.StatusCode.ToString();
+        }
+
+        private string BaseDelete(string addedUrl)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                //httpClient.BaseAddress = new Uri(base.ConectionString);
+
+                string href = base.ConectionString + addedUrl;
+                //"https://jsonplaceholder.typicode.com/todos/19";
+                //"http://localhost:56006/api/Topic/3";
+                Task<HttpResponseMessage> response = httpClient.DeleteAsync(href);
+
+                while (!response.IsCompleted)
+                {
+                    //
+                }
+
+                return response.Result.StatusCode.ToString();
+            }
         }
 
         public override string Edit(string addedUrl, string body)
         {
-            //return "yui";
-            //return RestSharpEdit(addedUrl, body);
-            return BaseEdit(addedUrl, body);
+            return RestSharpEdit(addedUrl, body);
+            //return BaseEdit(addedUrl, body);
 
+            //-------------
             //var client = new RestClient(base.ConectionString);
             //var request = new RestRequest(@"/api/Topic/4/", Method.PUT);
-
             //var _body = ParseString2Json(body);
-
-            ////request.AddParameter("id", 4);
             //request.AddParameter("application/json; charset=utf-8", _body, ParameterType.RequestBody);
-            ////request.AddJsonBody(_body);
             //request.RequestFormat = DataFormat.Json;
-
             //var queryResult = client.Put(request);
-
-            ////queryResult = client.Delete(request);
             //return queryResult.Content;
 
             //-------------
@@ -83,6 +100,7 @@ namespace CommonTestActions.Providers
             return queryResult.Content;
         }
 
+        //Task<HttpResponseMessage>
         private string BaseEdit(string addedUrl, string body)
         {
             using (var httpClient = new HttpClient())
@@ -97,6 +115,9 @@ namespace CommonTestActions.Providers
                 var response = httpClient.PutAsync(addedUrl, content).Result;
 
                 return response.Content.ReadAsStringAsync().Result;
+
+                //.ContinueWith<HttpResponseMessage>(
+                //   task => task.Result.EnsureSuccessStatusCode());
             }
         }
 

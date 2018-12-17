@@ -16,7 +16,7 @@ namespace ConsoleApp1
         {
             TestRunRestProvider();
 
-            TestRunStep();
+            //TestRunStep();
 
             Console.ReadKey();
         }
@@ -49,49 +49,71 @@ namespace ConsoleApp1
         {
             RestProvider provider = new RestProvider();
             provider.ConectionString = "http://localhost:56006";
-            Console.WriteLine(JsonConvert.SerializeObject(provider.Read(@"/api/Topic")));
 
-            Console.WriteLine("------------------------");
+            Console.WriteLine("--------GET Request----------------");
+            string response =  provider.Read(@"/api/Topic").ToString();
+            Console.WriteLine(JsonConvert.SerializeObject(response));
+
+            Console.WriteLine();
+            Console.WriteLine("---------POST request---------------");
             string _body = "{ \"Title\": \"string123\", \"enabled\": false}";
             Console.WriteLine(provider.Create(@"/api/Topic", _body));
 
-            Console.WriteLine("------------------------");
-            string response = provider.Read(@"/api/Topic").ToString();
+            Console.WriteLine();
+            Console.WriteLine("--------GET Request----------------");
+            response = provider.Read(@"/api/Topic").ToString();
+            Console.WriteLine(response);           
+
+            Console.WriteLine();
+            Console.WriteLine("---------DELETE request---------------");
+            int newItemId = 3;//Convert.ToInt32(provider.ExecuteValue(response, "request.id"));
+            Console.WriteLine("Try Delete Item {0}", newItemId);
+            Console.WriteLine(provider.Delete(@"/api/Topic/3")); // + newItemId));
+
+            Console.WriteLine();
+            Console.WriteLine("--------GET request----------------");
+            response = string.Empty;
+            response = provider.Read(@"/api/Topic").ToString();
             Console.WriteLine(response);
 
-            Console.WriteLine("------------------------");
-            Console.WriteLine(provider.ExecuteValue(response, "request.[2].id"));
-            Console.WriteLine(provider.ExecuteValue(response, "request.[1].title"));
-
-            Console.WriteLine("------------------------");
-            response = provider.Read(@"/api/Topic/2").ToString();
+            newItemId = 2;
+            Console.WriteLine();
+            Console.WriteLine("---------GET request by Id---------------");          
+            response = provider.Read(@"/api/Topic/" + newItemId).ToString();
             Console.WriteLine(response);
 
-            Console.WriteLine("------------------------");
-            _body = "{ \"Title\": \"~~PARAM1~~\", \"enabled\": true}";
-            Request _req = new Request(_body);
-            _body = _req.ReplaceStaticVar("PARAM1", "NewTopicFromParam");
-            response = provider.Create(@"/api/Topic", _body).ToString();
-            Console.WriteLine(response);
-
-            Console.WriteLine("------------------------");
-            _body = "{ \"Title\": \"~~@PARAM1~~\", \"enabled\": true}";
-            _req = new Request(_body);
-            _body = _req.ReplaceDynamicVar("PARAM1", "DynamicParam");
-            response = provider.Create(@"/api/Topic", _body).ToString();
-            Console.WriteLine(response);
-
-            Console.WriteLine("------------------------");
-            int newItemId = Convert.ToInt32(provider.ExecuteValue(response, "request.id"))-2;
-
+            Console.WriteLine();
+            Console.WriteLine("---------PUT request---------------");
             Console.WriteLine("Try Edit Item {0}", newItemId);
             _body = "{ \"Title\": \"NNNNNNewTitle(EditedItem)\", \"enabled\": true}";
             Console.WriteLine(provider.Edit(@"/api/Topic/" + newItemId, _body));
 
-            Console.WriteLine("------------------------");
-            response = string.Empty;
-            response = provider.Read(@"/api/Topic").ToString();
-            Console.WriteLine(response);
+            //Console.WriteLine("------------------------");
+            //response = string.Empty;
+            //response = provider.Read(@"/api/Topic").ToString();
+            //Console.WriteLine(response);
+
+            //Console.WriteLine("------------------------");
+            //Console.WriteLine(provider.ExecuteValue(response, "request.[2].id"));
+            //Console.WriteLine(provider.ExecuteValue(response, "request.[1].title"));
+
+            //Console.WriteLine("------------------------");
+            //response = provider.Read(@"/api/Topic/2").ToString();
+            //Console.WriteLine(response);
+
+            //Console.WriteLine("------------------------");
+            //_body = "{ \"Title\": \"~~PARAM1~~\", \"enabled\": true}";
+            //Request _req = new Request(_body);
+            //_body = _req.ReplaceStaticVar("PARAM1", "NewTopicFromParam");
+            //response = provider.Create(@"/api/Topic", _body).ToString();
+            //Console.WriteLine(response);
+
+            //Console.WriteLine("------------------------");
+            //_body = "{ \"Title\": \"~~@PARAM1~~\", \"enabled\": true}";
+            //_req = new Request(_body);
+            //_body = _req.ReplaceDynamicVar("PARAM1", "DynamicParam");
+            //response = provider.Create(@"/api/Topic", _body).ToString();
+            //Console.WriteLine(response);
 
             Console.WriteLine("------------------------");
             Console.WriteLine("------------------------");
