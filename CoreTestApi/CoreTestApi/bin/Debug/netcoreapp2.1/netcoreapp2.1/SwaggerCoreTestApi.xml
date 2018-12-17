@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CoreTestApi</name>
+    </assembly>
+    <members>
+        <member name="M:CoreTestApi.Controllers.TopicController.Get">
+            <summary>
+            get all topics
+            </summary>
+            <returns>all Topics</returns>
+            <response code="200">Returns all item</response>
+        </member>
+        <member name="M:CoreTestApi.Controllers.TopicController.Get(System.Int32)">
+            <summary>
+            get topic 
+            </summary>
+            <param name="id"></param>
+            <returns>return item from Topic</returns>
+            <response code="200">Returns the selected item</response>
+        </member>
+        <member name="M:CoreTestApi.Controllers.TopicController.EditTopic(System.Int32,CoreTestApi.Models.Topic)">
+            <summary>
+            Создание topic 
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns>edited Topic</returns>
+            <response code="200">Returns the edited item</response>
+            <response code="404">If the item is null</response>
+            <response code="500">Other error</response>
+        </member>
+        <member name="M:CoreTestApi.Controllers.TopicController.CreateTopic(CoreTestApi.Models.Topic)">
+            <summary>
+            Создание topic 
+            </summary>
+            <param name="model"></param>
+            <returns>A newly created Topic</returns>
+            <response code="201">Returns the newly created item</response>
+            <response code="204">If the item is null</response>
+            <response code="500">Other error</response>
+        </member>
+        <member name="M:CoreTestApi.Controllers.TopicController.DeleteTopic(System.Int32)">
+            <summary>
+            Удаление topic с указанным идентифкатором
+            </summary>
+            <param name="id"></param> 
+        </member>
+        <member name="M:CoreTestApi.Controllers.ValuesController.Get">
+            GET api/values
+        </member>
+        <member name="M:CoreTestApi.Controllers.ValuesController.Get(System.Int32)">
+            GET api/values/5
+        </member>
+        <member name="M:CoreTestApi.Controllers.ValuesController.Post(System.String)">
+            POST api/values
+        </member>
+        <member name="M:CoreTestApi.Controllers.ValuesController.Put(System.Int32,System.String)">
+            PUT api/values/5
+        </member>
+        <member name="M:CoreTestApi.Controllers.ValuesController.Delete(System.Int32)">
+            DELETE api/values/5
+        </member>
+    </members>
+</doc>
