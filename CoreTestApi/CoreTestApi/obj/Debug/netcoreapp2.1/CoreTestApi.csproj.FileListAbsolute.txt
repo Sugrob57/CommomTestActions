@@ -18,3 +18,4 @@ C:\VS\GIT\CoreTestApi\CoreTestApi\bin\Debug\netcoreapp2.1\netcoreapp2.1\CoreTest
 C:\VS\GIT\CoreTestApi\CoreTestApi\bin\Debug\netcoreapp2.1\netcoreapp2.1\CoreTestApi.dll
 C:\VS\GIT\CoreTestApi\CoreTestApi\bin\Debug\netcoreapp2.1\netcoreapp2.1\CoreTestApi.pdb
 C:\VS\GIT\CoreTestApi\CoreTestApi\bin\Debug\netcoreapp2.1\netcoreapp2.1\SwaggerCoreTestApi.xml
+C:\VS\GIT\CoreTestApi\CoreTestApi\bin\Debug\netcoreapp2.1\netcoreapp2.1\Web.config

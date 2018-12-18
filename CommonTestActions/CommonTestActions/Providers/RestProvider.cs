@@ -29,8 +29,8 @@ namespace CommonTestActions.Providers
 
         public override string Delete(string addedUrl)
         {
-            //return BaseDelete(addedUrl);
-            return RestSharpDelete(addedUrl);
+            return BaseDelete(addedUrl);
+            //return RestSharpDelete(addedUrl);
         }
 
         private string RestSharpDelete(string addedUrl)
@@ -64,8 +64,24 @@ namespace CommonTestActions.Providers
 
         public override string Edit(string addedUrl, string body)
         {
-            return RestSharpEdit(addedUrl, body);
-            //return BaseEdit(addedUrl, body);
+            //return RestSharpEdit(addedUrl, body);
+            return BaseEdit(addedUrl, body);
+
+            
+        }
+
+        private string RestSharpEdit(string addedUrl, string body)
+        {
+            var client = new RestClient(base.ConectionString);
+            var request = new RestRequest(addedUrl, Method.PUT);
+
+            var _body = ParseString2Json(body);
+
+            request.AddParameter("application/json; charset=utf-8", _body, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
+
+            var queryResult = client.Execute(request);
+            return queryResult.Content;
 
             //-------------
             //var client = new RestClient(base.ConectionString);
@@ -84,20 +100,6 @@ namespace CommonTestActions.Providers
             //request.AddParameter("application/json", _body, ParameterType.RequestBody);
             //var queryResult = client.Execute(request);
             //return queryResult.Content;
-        }
-
-        private string RestSharpEdit(string addedUrl, string body)
-        {
-            var client = new RestClient(base.ConectionString);
-            var request = new RestRequest(addedUrl, Method.PUT);
-
-            var _body = ParseString2Json(body);
-
-            request.AddParameter("application/json; charset=utf-8", _body, ParameterType.RequestBody);
-            request.RequestFormat = DataFormat.Json;
-
-            var queryResult = client.Execute(request);
-            return queryResult.Content;
         }
 
         //Task<HttpResponseMessage>

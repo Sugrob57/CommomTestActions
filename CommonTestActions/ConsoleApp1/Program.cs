@@ -14,11 +14,33 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            TestRunRestProvider();
-
+            string str = string.Empty;
+            while (!str.Equals("E"))
+            {
+                Console.WriteLine("What test run? (O - OwnRestProvider, N - NetRestProvider, S - Steps)");
+                str = Console.ReadLine().ToUpper();
+                switch (str)
+                {
+                    case "O":
+                        TestRestProvider("http://localhost:56006", @"/api/Topic");
+                        break;
+                    case "N":
+                        TestRestProvider("https://jsonplaceholder.typicode.com", @"/api/Topic");
+                        break;
+                    case "S":
+                        TestRunStep();
+                        break;
+                    default:
+                        Console.WriteLine("Uncnown command");
+                        break;
+                }
+                Console.WriteLine("==========================================");
+            }
+            //TestRunRestProvider();
+            //TestRunRestProviderUseJsonServer();
             //TestRunStep();
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         private static void TestRunStep()
@@ -44,49 +66,48 @@ namespace ConsoleApp1
 
         }
 
-
-        private static void TestRunRestProvider ()
+        private static void TestRestProvider(string url, string addedUrl)
         {
             RestProvider provider = new RestProvider();
-            provider.ConectionString = "http://localhost:56006";
+            provider.ConectionString = url; 
 
             Console.WriteLine("--------GET Request----------------");
-            string response =  provider.Read(@"/api/Topic").ToString();
+            string response = provider.Read(addedUrl).ToString();
             Console.WriteLine(JsonConvert.SerializeObject(response));
 
             Console.WriteLine();
             Console.WriteLine("---------POST request---------------");
             string _body = "{ \"Title\": \"string123\", \"enabled\": false}";
-            Console.WriteLine(provider.Create(@"/api/Topic", _body));
+            Console.WriteLine(provider.Create(addedUrl, _body));
 
             Console.WriteLine();
             Console.WriteLine("--------GET Request----------------");
-            response = provider.Read(@"/api/Topic").ToString();
-            Console.WriteLine(response);           
+            response = provider.Read(addedUrl).ToString();
+            Console.WriteLine(response);
 
             Console.WriteLine();
             Console.WriteLine("---------DELETE request---------------");
             int newItemId = 3;//Convert.ToInt32(provider.ExecuteValue(response, "request.id"));
             Console.WriteLine("Try Delete Item {0}", newItemId);
-            Console.WriteLine(provider.Delete(@"/api/Topic/3")); // + newItemId));
+            Console.WriteLine(provider.Delete(addedUrl + @"/"+ newItemId)); 
 
             Console.WriteLine();
             Console.WriteLine("--------GET request----------------");
             response = string.Empty;
-            response = provider.Read(@"/api/Topic").ToString();
+            response = provider.Read(addedUrl).ToString();
             Console.WriteLine(response);
 
             newItemId = 2;
             Console.WriteLine();
-            Console.WriteLine("---------GET request by Id---------------");          
-            response = provider.Read(@"/api/Topic/" + newItemId).ToString();
+            Console.WriteLine("---------GET request by Id---------------");
+            response = provider.Read(addedUrl +@"/" + newItemId).ToString();
             Console.WriteLine(response);
 
             Console.WriteLine();
             Console.WriteLine("---------PUT request---------------");
             Console.WriteLine("Try Edit Item {0}", newItemId);
             _body = "{ \"Title\": \"NNNNNNewTitle(EditedItem)\", \"enabled\": true}";
-            Console.WriteLine(provider.Edit(@"/api/Topic/" + newItemId, _body));
+            Console.WriteLine(provider.Edit(addedUrl + @"/" + newItemId, _body));
 
             //Console.WriteLine("------------------------");
             //response = string.Empty;
