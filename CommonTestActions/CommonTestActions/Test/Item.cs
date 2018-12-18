@@ -8,17 +8,16 @@ namespace CommonTestActions.Test
     {
         public float Duration { get; set; }
         public ItemType Type { get; set; }
-        public ActionType Action { get; set; }
+        
         public int Order { get; set; }
         public ItemStatus Status { get; set; }
-        public string Name { get; protected set; }
+        public string Name { get; set; }
 
-        public Item(ActionType action)
+        public Item()
         {
             Status = ItemStatus.Created;
             Duration = 0;
-            Name = "NonameItem";
-            Action = action;
+            Name = "NonameItem";         
         }
 
         public abstract ItemStatus Run();

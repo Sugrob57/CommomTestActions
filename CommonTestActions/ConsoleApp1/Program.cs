@@ -25,7 +25,7 @@ namespace ConsoleApp1
                         TestRestProvider("http://localhost:56006", @"/api/Topic");
                         break;
                     case "N":
-                        TestRestProvider("https://jsonplaceholder.typicode.com", @"/api/Topic");
+                        TestRestProvider("http://jsonplaceholder.typicode.com", @"/todos");
                         break;
                     case "S":
                         TestRunStep();
@@ -46,14 +46,14 @@ namespace ConsoleApp1
         private static void TestRunStep()
         {
             Console.WriteLine("---------- REST Step Read() -----------");
-            Step step = new Step(ActionType.Read ,"http://localhost:56006", @"/api/Topic");
+            Step step = new Step(ProviderType.Rest,ActionType.Read ,"http://localhost:56006", @"/api/Topic");
             Console.WriteLine(step.Run());
             Console.WriteLine();
             Console.WriteLine(step.Response);
             Console.WriteLine("----------------------");
 
             Console.WriteLine("--------- REST Step Create() -------------");
-            step = new Step(ActionType.Create, "http://localhost:56006", @"/api/Topic");
+            step = new Step(ProviderType.Rest,ActionType.Create, "http://localhost:56006", @"/api/Topic");
             string _body = "{ \"Title\": \"string123\", \"enabled\": false}";
             step.Parameters.Add(
                 ParameterType.Body,
@@ -107,7 +107,7 @@ namespace ConsoleApp1
             Console.WriteLine("---------PUT request---------------");
             Console.WriteLine("Try Edit Item {0}", newItemId);
             _body = "{ \"Title\": \"NNNNNNewTitle(EditedItem)\", \"enabled\": true}";
-            Console.WriteLine(provider.Edit(addedUrl + @"/" + newItemId, _body));
+            Console.WriteLine(provider.Update(addedUrl + @"/" + newItemId, _body));
 
             //Console.WriteLine("------------------------");
             //response = string.Empty;

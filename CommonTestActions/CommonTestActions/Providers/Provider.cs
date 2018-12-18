@@ -8,29 +8,29 @@ namespace CommonTestActions
     {
         public string ConectionString { get; set; }
 
-        public virtual object Read(string addedUrl)
+        public virtual object Read(string query)
         {
             return new NotImplementedException().Message;
         }
 
-        public virtual object Create(string addedUrl, string body)
+        public virtual object Create(string query, string body)
         {
             return new NotImplementedException().Message;
         }
 
-        public abstract string Edit(string addedUrl, string body);
-        //{
-        //    return new Task<HttpResponseMessage>();
-        //}
+        public virtual string Update(string query, string body)
+        {
+            return new NotImplementedException().Message;
+        }
 
-        public virtual string Delete(string addedUrl)
+        public virtual string Delete(string query)
         {
             return new NotImplementedException().Message;
         }
 
         public virtual string ExecuteValue(string response, string query)
-        { 
-            return  "123";
+        {
+            return new NotImplementedException().Message;
         }
     }
 }

@@ -29,8 +29,8 @@ namespace CommonTestActions.Providers
 
         public override string Delete(string addedUrl)
         {
-            return BaseDelete(addedUrl);
-            //return RestSharpDelete(addedUrl);
+            //return BaseDelete(addedUrl);
+            return RestSharpDelete(addedUrl);
         }
 
         private string RestSharpDelete(string addedUrl)
@@ -62,12 +62,10 @@ namespace CommonTestActions.Providers
             }
         }
 
-        public override string Edit(string addedUrl, string body)
+        public override string Update(string addedUrl, string body)
         {
-            //return RestSharpEdit(addedUrl, body);
-            return BaseEdit(addedUrl, body);
-
-            
+            return RestSharpEdit(addedUrl, body);
+            //return BaseEdit(addedUrl, body);
         }
 
         private string RestSharpEdit(string addedUrl, string body)

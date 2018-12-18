@@ -33,10 +33,11 @@ namespace CommonTestActions.Test
 
     public enum ActionType
     {
-        Read,
         Create,
-        Edit,
-        Delete
+        Read,     
+        Update,
+        Delete,
+        ExecuteValue
     }
 
     public enum ParameterType
