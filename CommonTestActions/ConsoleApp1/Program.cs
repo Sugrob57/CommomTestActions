@@ -17,18 +17,28 @@ namespace ConsoleApp1
             string str = string.Empty;
             while (!str.Equals("E"))
             {
-                Console.WriteLine("What test run? (O - OwnRestProvider, N - NetRestProvider, S - Steps)");
+                Console.WriteLine("What test run?");
+                Console.WriteLine("O - OwnRestProvider, N - NetRestProvider, S - Steps");
+                Console.WriteLine("TO - OwnRestTests  , TN - NetRestTests");
+
                 str = Console.ReadLine().ToUpper();
                 switch (str)
                 {
                     case "O":
-                        TestRestProvider("http://localhost:56006", @"/api/Topic");
+                        RunRestProvider("http://localhost:56006", @"/api/Topic");
                         break;
                     case "N":
-                        TestRestProvider("http://jsonplaceholder.typicode.com", @"/todos");
+                        RunRestProvider("http://jsonplaceholder.typicode.com", @"/todos");
                         break;
                     case "S":
-                        TestRunStep();
+                        RunSteps();
+                        break;
+                    case "TO":
+                        RunTests("http://localhost:56006", @"/api/Topic");
+                        break;
+
+                    case "TN":
+                        RunTests("http://jsonplaceholder.typicode.com", @"/todos");
                         break;
                     default:
                         Console.WriteLine("Uncnown command");
@@ -36,14 +46,82 @@ namespace ConsoleApp1
                 }
                 Console.WriteLine("==========================================");
             }
-            //TestRunRestProvider();
-            //TestRunRestProviderUseJsonServer();
-            //TestRunStep();
 
             //Console.ReadKey();
         }
+        private static void RunTests(string source, string query)
+        {
+            Console.WriteLine("---------- Run Test (RestProvider) -----------");
+            Test test = new Test("Sample test");
+            Console.WriteLine("Curent test state");
+            test.PrintResults();
 
-        private static void TestRunStep()
+            //----------------------------------------------------------------
+            //------Add step--
+            ProviderType pr = ProviderType.Rest; 
+            ActionType ac = ActionType.Read;
+            string src = source;
+            string qr = query;
+            Console.WriteLine("Added step: Provider: {0}, Action: {1}, Source: {2}, Query: {3}",
+                pr, ac, src, qr);
+            test.AddStep(pr, ac, src, qr);
+
+            //------Add step--
+            pr = ProviderType.Rest;
+            ac = ActionType.Create;
+            src = source;
+            qr = query;
+            string _body = "{ \"Title\": \"string123\", \"enabled\": false}"; 
+            Console.WriteLine("Added step: Provider: {0}, Action: {1}, Source: {2}, Query: {3}",
+                pr, ac, src, qr);
+            test.AddStep(pr, ac, src, qr, _body);
+
+            //------Add step--
+            pr = ProviderType.Rest;
+            ac = ActionType.Read;
+            src = source;
+            qr = query + "/2";
+            Console.WriteLine("Added step: Provider: {0}, Action: {1}, Source: {2}, Query: {3}",
+                pr, ac, src, qr);
+            test.AddStep(pr, ac, src, qr);
+
+            //------Add step--
+            pr = ProviderType.Rest;
+            ac = ActionType.Update;
+            src = source;
+            qr = query + "2";
+            _body = "{ \"Title\": \"string456\", \"enabled\": false}";
+            Console.WriteLine("Added step: Provider: {0}, Action: {1}, Source: {2}, Query: {3}",
+                pr, ac, src, qr);
+            test.AddStep(pr, ac, src, qr, _body);
+
+            //------Add step--
+            pr = ProviderType.Rest;
+            ac = ActionType.Delete;
+            src = source;
+            qr = query + "/2";
+            Console.WriteLine("Added step: Provider: {0}, Action: {1}, Source: {2}, Query: {3}",
+                pr, ac, src, qr);
+            test.AddStep(pr, ac, src, qr);
+
+            //------Add step--
+            pr = ProviderType.Rest;
+            ac = ActionType.Read;
+            src = source;
+            qr = query;
+            Console.WriteLine("Added step: Provider: {0}, Action: {1}, Source: {2}, Query: {3}",
+                pr, ac, src, qr);
+            test.AddStep(pr, ac, src, qr);
+
+            //--------------------------------------------------------------------------------------------------
+            Console.WriteLine();
+            Console.WriteLine("============ Run test ============");
+            test.Run();
+            Console.WriteLine();
+            test.PrintResults();
+        }
+
+        private static void RunSteps()
         {
             Console.WriteLine("---------- REST Step Read() -----------");
             Step step = new Step(ProviderType.Rest,ActionType.Read ,"http://localhost:56006", @"/api/Topic");
@@ -66,7 +144,7 @@ namespace ConsoleApp1
 
         }
 
-        private static void TestRestProvider(string url, string addedUrl)
+        private static void RunRestProvider(string url, string addedUrl)
         {
             RestProvider provider = new RestProvider();
             provider.ConectionString = url; 

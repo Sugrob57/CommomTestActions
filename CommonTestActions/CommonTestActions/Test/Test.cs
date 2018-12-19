@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Diagnostics;
-using System.Text;
+
 
 namespace CommonTestActions.Test
 {
     public class Test : Item
     {
-        public List<Item> Steps { get; set; }
+        public List<Step> Steps { get; set; }
         public Dictionary<string,string> StepResponses { get; set; }
 
         public Test(string name) : base()
@@ -20,32 +21,25 @@ namespace CommonTestActions.Test
             
             base.Type = ItemType.Test;
 
-            Steps = new List<Item>();
+            Steps = new List<Step>();
             StepResponses = new Dictionary<string, string>();
         }
 
-
-
         public override ItemStatus Run()
         {
-            return ItemStatus.Fail;
-        }
-        /*
             Stopwatch duration = new Stopwatch();
             duration.Start();
             try
             {
-
-
-                switch (Provider)
+                SortSteps();
+                foreach (Step step in Steps)
                 {
-                    case ProviderType.Rest:
-                        //RestProviderRun();
+                    Status = step.Run();
+                    step.PrintResults();
+                    if (Status.Equals(ItemStatus.Fail))
                         break;
-                    default:
-                        Status = ItemStatus.Fail;
-                        throw new NotImplementedException();
-                }
+                    Status = ItemStatus.Success;
+                }              
             }
             catch
             {
@@ -55,17 +49,23 @@ namespace CommonTestActions.Test
             duration.Stop();
             Duration = duration.ElapsedMilliseconds;
             return Status;
+        }   
+        
+        private void SortSteps()
+        {
+            Steps = Steps.OrderBy(step => step.Order).ToList();
         }
-        */
 
-        public ItemStatus AddStep(ProviderType provider, ActionType action, string source, string query = null)
+        public ItemStatus AddStep(ProviderType provider, ActionType action, string source, string query = null, string body = null)
         {
             ItemStatus status = ItemStatus.ReadyToRun;
             try
             {
                 Step _step = new Step(provider, action, source, query);
-                _step.Order = Steps.Count + 1;
+                _step.Order = Steps.Count+1;
                 _step.Name = String.Format("{0}_{1}_{2}_step", provider, action,_step.Order);
+                if (body != null)
+                    _step.Parameters.Add(ParameterType.Body, body);
                 Steps.Add(_step);
                 status = ItemStatus.Success;
             }
