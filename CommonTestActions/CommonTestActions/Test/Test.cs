@@ -63,7 +63,7 @@ namespace CommonTestActions.Test
             {
                 Step _step = new Step(provider, action, source, query);
                 _step.Order = Steps.Count+1;
-                _step.Name = String.Format("{0}_{1}_{2}_step", provider, action,_step.Order);
+                _step.Name = String.Format("{0}_{1}_{2}_step", provider, action, _step.Order);
                 if (body != null)
                     _step.Parameters.Add(ParameterType.Body, body);
                 Steps.Add(_step);
