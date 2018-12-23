@@ -6,11 +6,11 @@ namespace NUnitTests
 {
     class Data
     {
-        static string NetSource = "http://jsonplaceholder.typicode.com";
-        static string LocalSource = "http://localhost:56006";
-        static string NetAddedUrl = "/todos";
-        static string LocalAddedUrl = "/api/Topic";
-        static string Body = "{ \"Title\": \"string123\", \"enabled\": false}";
+        public static string NetSource = "http://jsonplaceholder.typicode.com";
+        public static string LocalSource = "http://localhost:56006";
+        public static string NetAddedUrl = "/todos";
+        public static string LocalAddedUrl = "/api/Topic";
+        public static string Body = "{ \"Title\": \"string123\", \"enabled\": false}";
 
 
         public static object[] LocalTestData =

@@ -32,6 +32,9 @@ namespace CommonTestActions.Test
             try
             {
                 SortSteps();
+                if (Steps.Count == 0)
+                    Status = ItemStatus.Created;
+
                 foreach (Step step in Steps)
                 {
                     Status = step.Run();
