@@ -37,8 +37,20 @@ namespace CommonTestActions.Test
 
                 foreach (Step step in Steps)
                 {
+                    if (step.Action == ActionType.ExecuteValue)
+                        if (StepResponses.TryGetValue(step.Source, out string resp))
+                        {
+                            step.Parameters.Add(ParameterType.Body, resp);
+                        }
+                        else
+                        {
+                            Status = ItemStatus.Fail;
+                            break;
+                        }
+                    
                     Status = step.Run();
                     step.PrintResults();
+                    StepResponses.Add(step.Name, step.Response);
                     if (Status.Equals(ItemStatus.Fail))
                         break;
                     Status = ItemStatus.Success;

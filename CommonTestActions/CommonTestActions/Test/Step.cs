@@ -31,13 +31,13 @@ namespace CommonTestActions.Test
             Stopwatch duration = new Stopwatch();
             duration.Start();
             try
-            {
-                
-                
+            {  
                 switch (Provider)
                 {
                     case ProviderType.Rest:
-                        RestProviderRun();
+                        Step step = RunActions.RunRestAction(Source,Parameters,Action);
+                        Status = step.Status;
+                        Response = step.Response;
                         break;
                     default:
                         Status = ItemStatus.Fail;
@@ -54,47 +54,6 @@ namespace CommonTestActions.Test
             return Status;
         }
 
-        private void RestProviderRun()
-        {
-            RestProvider _provider = new RestProvider();
-            _provider.ConectionString = Source;
-
-            string _body = string.Empty;
-            object obj = null;
-
-            Parameters.TryGetValue(ParameterType.AddedUrl, out obj);
-            string _addedUrl = obj?.ToString();
-
-            obj = null;
-            Parameters.TryGetValue(ParameterType.Body, out obj);
-            _body = obj?.ToString();
-
-            switch (Action)
-            {
-                case ActionType.Read:
-                    Response = _provider.Read(_addedUrl).ToString();
-                    Status = Response.Length == 0 ? ItemStatus.Fail : ItemStatus.Success;
-                    break;
-                case ActionType.Create:
-                    Response = _provider.Create(_addedUrl, _body).ToString();
-                    Status = Response.Length == 0 ? ItemStatus.Fail : ItemStatus.Success;
-                    break;
-                case ActionType.Update:
-                    Response = _provider.Update(_addedUrl, _body).ToString();
-                    Status = Response.Length == 0 ? ItemStatus.Fail : ItemStatus.Success;
-                    break;
-                case ActionType.Delete:
-                    Response = _provider.Delete(_addedUrl).ToString();
-                    Status = Response.Length == 0 ? ItemStatus.Fail : ItemStatus.Success;
-                    break;
-                case ActionType.ExecuteValue:
-                    Response = _provider.ExecuteValue(_body, _addedUrl);
-                    Status = Response.Length == 0 ? ItemStatus.Fail : ItemStatus.Success;
-                    break;
-                default:
-                    Status = ItemStatus.Fail;
-                    throw new InvalidOperationException();
-            }
-        }
+        
     }
 }
