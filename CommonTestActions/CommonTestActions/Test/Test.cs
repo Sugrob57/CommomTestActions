@@ -37,7 +37,7 @@ namespace CommonTestActions.Test
 
                 foreach (Step step in Steps)
                 {
-                    if (step.Action == ActionType.ExecuteValue)
+                    if ((step.Action == ActionType.ExecuteValue) || (step.Action == ActionType.ExecuteList))
                         if (StepResponses.TryGetValue(step.Source, out string resp))
                         {
                             step.Parameters.Add(ParameterType.Body, resp);
@@ -71,16 +71,31 @@ namespace CommonTestActions.Test
             Steps = Steps.OrderBy(step => step.Order).ToList();
         }
 
-        public ItemStatus AddStep(ProviderType provider, ActionType action, string source, string query = null, string body = null)
+        public ItemStatus AddStep(
+            ProviderType provider, 
+            ActionType action, 
+            string source, 
+            string query = null, 
+            string body = null, 
+            string replacementValue = null, 
+            ParameterType replacementParam = ParameterType.All
+            )
         {
             ItemStatus status = ItemStatus.ReadyToRun;
             try
             {
                 Step _step = new Step(provider, action, source, query);
-                _step.Order = Steps.Count+1;
+                _step.Order = Steps.Count + 1;
                 _step.Name = String.Format("{0}_{1}_{2}_step", provider, action, _step.Order);
+
                 if (body != null)
                     _step.Parameters.Add(ParameterType.Body, body);
+
+                if (replacementValue != null)
+                    _step.Parameters.Add(ParameterType.ReplacementValue, replacementValue);
+
+                _step.Parameters.Add(ParameterType.ReplacementParam, replacementParam);
+
                 Steps.Add(_step);
                 status = ItemStatus.Success;
             }

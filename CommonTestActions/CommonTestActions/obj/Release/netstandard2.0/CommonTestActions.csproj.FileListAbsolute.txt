@@ -1,0 +1,8 @@
+C:\VS\GIT\CommonTestActions\CommonTestActions\bin\Release\netstandard2.0\CommonTestActions.deps.json
+C:\VS\GIT\CommonTestActions\CommonTestActions\bin\Release\netstandard2.0\CommonTestActions.dll
+C:\VS\GIT\CommonTestActions\CommonTestActions\bin\Release\netstandard2.0\CommonTestActions.pdb
+C:\VS\GIT\CommonTestActions\CommonTestActions\obj\Release\netstandard2.0\CommonTestActions.csproj.CoreCompileInputs.cache
+C:\VS\GIT\CommonTestActions\CommonTestActions\obj\Release\netstandard2.0\CommonTestActions.AssemblyInfoInputs.cache
+C:\VS\GIT\CommonTestActions\CommonTestActions\obj\Release\netstandard2.0\CommonTestActions.AssemblyInfo.cs
+C:\VS\GIT\CommonTestActions\CommonTestActions\obj\Release\netstandard2.0\CommonTestActions.dll
+C:\VS\GIT\CommonTestActions\CommonTestActions\obj\Release\netstandard2.0\CommonTestActions.pdb

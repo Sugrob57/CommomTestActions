@@ -1,0 +1,12 @@
+C:\VS\GIT\CommonTestActions\NUnitTestProject1\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.dll
+C:\VS\GIT\CommonTestActions\NUnitTestProject1\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.pdb
+C:\VS\GIT\CommonTestActions\NUnitTestProject1\bin\Debug\netcoreapp2.1\nunit.engine.netstandard.dll
+C:\VS\GIT\CommonTestActions\NUnitTestProject1\bin\Debug\netcoreapp2.1\Mono.Cecil.dll
+C:\VS\GIT\CommonTestActions\NUnitTestProject1\bin\Debug\netcoreapp2.1\NUnitTestProject1.deps.json
+C:\VS\GIT\CommonTestActions\NUnitTestProject1\bin\Debug\netcoreapp2.1\NUnitTestProject1.runtimeconfig.json
+C:\VS\GIT\CommonTestActions\NUnitTestProject1\bin\Debug\netcoreapp2.1\NUnitTestProject1.runtimeconfig.dev.json
+C:\VS\GIT\CommonTestActions\NUnitTestProject1\bin\Debug\netcoreapp2.1\NUnitTestProject1.dll
+C:\VS\GIT\CommonTestActions\NUnitTestProject1\obj\Debug\netcoreapp2.1\NUnitTestProject1.csprojAssemblyReference.cache
+C:\VS\GIT\CommonTestActions\NUnitTestProject1\obj\Debug\netcoreapp2.1\NUnitTestProject1.csproj.CoreCompileInputs.cache
+C:\VS\GIT\CommonTestActions\NUnitTestProject1\obj\Debug\netcoreapp2.1\NUnitTestProject1.AssemblyInfoInputs.cache
+C:\VS\GIT\CommonTestActions\NUnitTestProject1\obj\Debug\netcoreapp2.1\NUnitTestProject1.AssemblyInfo.cs

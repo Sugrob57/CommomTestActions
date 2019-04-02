@@ -9,8 +9,16 @@ namespace CommonTestActions.Test
         Step,
         Test,
         Pack,
-        MultiResponsePack
+        MultiResultTest
     }
+
+    public enum TreadingType
+    {
+        Line,
+        Delay,
+        Parallel
+    }
+
 
     public enum ItemStatus
     {
@@ -37,13 +45,17 @@ namespace CommonTestActions.Test
         Read,     
         Update,
         Delete,
-        ExecuteValue
+        ExecuteValue,
+        ExecuteList
     }
 
     public enum ParameterType
     {
         AddedUrl,
         Body,
-        File
+        File,
+        All,
+        ReplacementValue,
+        ReplacementParam
     }
 }

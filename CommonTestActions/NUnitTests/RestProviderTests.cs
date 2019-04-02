@@ -129,6 +129,25 @@ namespace Tests
                 Assert.Fail(e.Message);
             }
         }
-        
+
+        [TestCase(@"123456789~~(OLD_VALUE)~~123456789", "OLD_VALUE", "VALUE_NEW", "123456789~~(OLD_VALUE)~~123456789")]
+        [TestCase(@"123456789~~OLD_VALUE~~123456789", "OLD_VALUE", "VALUE_NEW", "123456789VALUE_NEW123456789")]
+        public void ReplaceValue(string text,  string oldValue, string newValue, string expected)
+        {
+            try
+            {
+                string value = Actions.ReplaceValues(text, oldValue, newValue);
+
+                Assert.IsNotNull(value);
+                Assert.That(value, Is.EqualTo(expected).IgnoreCase);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+
+
     }
 }

@@ -1,0 +1,17 @@
+C:\VS\GIT\CommonTestActions\NUnitTests\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.dll
+C:\VS\GIT\CommonTestActions\NUnitTests\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.pdb
+C:\VS\GIT\CommonTestActions\NUnitTests\bin\Debug\netcoreapp2.1\nunit.engine.netstandard.dll
+C:\VS\GIT\CommonTestActions\NUnitTests\bin\Debug\netcoreapp2.1\CommonTestActionsNUnitTests.deps.json
+C:\VS\GIT\CommonTestActions\NUnitTests\bin\Debug\netcoreapp2.1\CommonTestActionsNUnitTests.runtimeconfig.json
+C:\VS\GIT\CommonTestActions\NUnitTests\bin\Debug\netcoreapp2.1\CommonTestActionsNUnitTests.runtimeconfig.dev.json
+C:\VS\GIT\CommonTestActions\NUnitTests\bin\Debug\netcoreapp2.1\CommonTestActionsNUnitTests.dll
+C:\VS\GIT\CommonTestActions\NUnitTests\bin\Debug\netcoreapp2.1\CommonTestActionsNUnitTests.pdb
+C:\VS\GIT\CommonTestActions\NUnitTests\bin\Debug\netcoreapp2.1\CommonTestActions.dll
+C:\VS\GIT\CommonTestActions\NUnitTests\bin\Debug\netcoreapp2.1\CommonTestActions.pdb
+C:\VS\GIT\CommonTestActions\NUnitTests\obj\Debug\netcoreapp2.1\CommonTestActionsNUnitTests.csprojAssemblyReference.cache
+C:\VS\GIT\CommonTestActions\NUnitTests\obj\Debug\netcoreapp2.1\CommonTestActionsNUnitTests.csproj.CoreCompileInputs.cache
+C:\VS\GIT\CommonTestActions\NUnitTests\obj\Debug\netcoreapp2.1\CommonTestActionsNUnitTests.AssemblyInfoInputs.cache
+C:\VS\GIT\CommonTestActions\NUnitTests\obj\Debug\netcoreapp2.1\CommonTestActionsNUnitTests.AssemblyInfo.cs
+C:\VS\GIT\CommonTestActions\NUnitTests\obj\Debug\netcoreapp2.1\CommonTestActionsNUnitTests.csproj.CopyComplete
+C:\VS\GIT\CommonTestActions\NUnitTests\obj\Debug\netcoreapp2.1\CommonTestActionsNUnitTests.dll
+C:\VS\GIT\CommonTestActions\NUnitTests\obj\Debug\netcoreapp2.1\CommonTestActionsNUnitTests.pdb

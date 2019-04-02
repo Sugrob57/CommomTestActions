@@ -13,6 +13,7 @@ namespace CommonTestActions.Test
         public Dictionary<ParameterType,Object> Parameters { get; set; }
         public string Response { get; set; }
         public ActionType Action { get; set; }
+        public List<string> ResponseCollection { get; set; }
 
         public Step(ProviderType provider,ActionType action, string source, string query = null) : base()
         {
@@ -23,6 +24,8 @@ namespace CommonTestActions.Test
 
             Parameters = new Dictionary<ParameterType, Object>();
             Parameters.Add(ParameterType.AddedUrl,query);
+            ResponseCollection = new List<string>();
+
         }
 
 
@@ -35,7 +38,7 @@ namespace CommonTestActions.Test
                 switch (Provider)
                 {
                     case ProviderType.Rest:
-                        Step step = RunActions.RunRestAction(Source,Parameters,Action);
+                        Step step = Actions.RestAction(Source,Parameters,Action);
                         Status = step.Status;
                         Response = step.Response;
                         break;

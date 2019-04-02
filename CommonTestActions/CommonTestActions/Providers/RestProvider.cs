@@ -100,7 +100,6 @@ namespace CommonTestActions.Providers
             //return queryResult.Content;
         }
 
-        //Task<HttpResponseMessage>
         private string BaseEdit(string addedUrl, string body)
         {
             using (var httpClient = new HttpClient())
@@ -149,6 +148,19 @@ namespace CommonTestActions.Providers
             // https://www.newtonsoft.com/json/help/html/SelectToken.htm
         }
 
-        
+        public List<string> ExecuteList(string response, string query)
+        {
+            JObject jobject = new JObject();
+            string str = "{ 'request': " + response + " }";
+            jobject = ParseString2Json(str);
+
+            List<string> values = new List<string>();
+            IEnumerable<JToken> jValues = jobject.SelectTokens(query);
+
+            foreach (JToken item in jValues)
+                values.Add(item.ToString());
+
+            return values;
+        }
     }
 }
